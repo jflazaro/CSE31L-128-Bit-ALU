@@ -1,0 +1,10 @@
+Gerry Su 16325043
+Joshua Lazaro
+Jia Rui Zhu
+Christopher Kevin Bravo
+Design Report
+	Assumptions: Design basic 128 bit ALU in terms of structural design. 128 ALUs will be cascaded. 
+Arithmetic block is created with 3 modules: 7to1 mux for arithmetic operations, 7to1 carry generator mux, 1Bit full adder. 
+Logic block is created with 2 modules: 5to1 mux for logic operations, 5to1mux carry generator
+ALU is created with arithmetic block, logic block, two muxes
+ 
