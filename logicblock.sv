@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module logicblock(
-    logic op1,
-    logic op2,
-    logic [2:0] opsel,
+    input logic op1,
+    input logic op2,
+    input logic [2:0] opsel,
     output result_L,
     output cout_L
     );
