@@ -15,8 +15,8 @@ module mux4to1(
     
     // Instantiates 3 of 2-to-1 multiplexors and connect them together
     mux2to1 L1(
-        .A(B), // "." refers to mux2to1, B refers to the input of the 4to1 mux.
-        .B(A),
+        .A(B), // "." refers to input of mux2to1, B refers to the input of the 4to1 mux.
+        .B(A), // so input B is connected to the input A of mux2to1.
         .sel(sel[0]),
         .Y(net1)
     );
