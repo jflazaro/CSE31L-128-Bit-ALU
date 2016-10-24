@@ -21,6 +21,48 @@
 
 
 module ArithmeticBlock1Bit(
-
+    input logic A,
+    input logic B,
+    input logic Cin,
+    input logic [2:0] opsel,
+    output logic Result,
+    output logic Cout,
+    wire muxoutb,
+    wire muxoutc
     );
+   
+    mux8to1 MUXB(
+        .A(B),//Cin=0
+        .B(~B),//Cin=0
+        .C(1'b0),//Cin=0
+        .D(~B),//Cin=1 Invert all B's
+        .E(1'b0),//Cin=1
+        .F(1'b0),//Cin=1
+        .G(B),//Cin=1
+        .H(1'bx),
+        .opsel(opsel),
+        .out(muxoutb)
+        );
+        
+    mux8to1 MUXC(
+        .A(1'b0),//Cin=0
+        .B(1'b0),//Cin=0
+        .C(1'b0),//Cin=0
+        .D(1'b1),//Cin=1 Invert all B's
+        .E(1'b1),//Cin=1
+        .F(1'b1),//Cin=1
+        .G(1'b1),//Cin=1
+        .H(1'bx),
+        .opsel(opsel),
+        .out(muxoutc)
+        );
+
+    FullAdder1Bit FA(
+        .A(A),
+        .B(muxoutb),
+        .Cin(muxoutc),
+        .Cout(Cout),
+        .Result(Result)
+        );
+   
 endmodule

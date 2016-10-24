@@ -20,7 +20,39 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ArithmeticBlock1Bit_tb(
+module ArithmeticBlock1Bit_tb;
 
-    );
+    logic a;
+    logic b;
+    logic cin;
+    logic [2:0] opsel;
+    logic result;
+    logic cout;
+    
+    int i,j,k;
+    
+    ArithmeticBlock1Bit AB1(
+        .A(a),
+        .B(b),
+        .Cin(cin),
+        .opsel(opsel),
+        .Result(result),
+        .Cout(cout)
+        );
+    
+    initial begin
+        a=0;
+        b=0;
+        for(i=0; i<2; i++) begin
+            a = i;
+            for (j = 0; j<2; j++) begin
+                b = j;
+                for (k = 0; k < 8; k++) begin
+                    opsel = k;
+                    #10;
+                end
+            end
+        end
+    end
+
 endmodule
