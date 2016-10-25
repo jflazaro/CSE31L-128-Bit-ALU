@@ -1,9 +1,9 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ps    
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
 // 
-// Create Date: 10/25/2016 02:53:15 PM
+// Create Date: 10/04/2016 02:25:16 PM
 // Design Name: 
 // Module Name: mux8to1
 // Project Name: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux8to1(
+module mux8to1( //Ports declaration inside the brackets.
     input logic A,
     input logic B,
     input logic C,
@@ -31,33 +31,16 @@ module mux8to1(
     input logic H,
     input logic [2:0] opsel,
     output logic out
-    );
+    );  //  Don't forget semi-colon
     
-    wire net1;
-    wire net2;
+    assign out = (opsel == 3'b000)? A :
+                 (opsel == 3'b001)? B :
+                 (opsel == 3'b010)? C :
+                 (opsel == 3'b011)? D :
+                 (opsel == 3'b100)? E :
+                 (opsel == 3'b101)? F :
+                 (opsel == 3'b110)? G :
+                 (opsel == 3'b111)? H :
+                 1'bz; //Default / Impedeance Case.
     
-    mux4to1 L1(
-        .A(A),
-        .B(B),
-        .C(C),
-        .D(D),
-        .sel(opsel[1:0]),
-        .Y(net1)
-    );
-    
-    mux4to1 L2(
-        .A(E),
-        .B(F),
-        .C(G),
-        .D(H),
-        .sel(opsel[1:0]),
-        .Y(net2)
-    );
-    
-    mux2to1 L3(
-        .A(net1),
-        .B(net2),
-        .sel(opsel[2]),
-        .Y(out)
-    );
 endmodule
