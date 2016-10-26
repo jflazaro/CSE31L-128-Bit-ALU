@@ -26,10 +26,11 @@ module ArithmeticBlock1Bit(
     input logic Cin,
     input logic [2:0] opsel,
     output logic Result,
-    output logic Cout,
-    wire muxoutb,
-    wire muxoutc
+    output logic Cout
     );
+    
+    wire muxoutb;
+    wire muxoutc;
    
     mux8to1 MUXB(
         .A(B),//Cin=0
@@ -37,7 +38,7 @@ module ArithmeticBlock1Bit(
         .C(1'b0),//Cin=0
         .D(~B),//Cin=1 Invert all B's
         .E(1'b0),//Cin=1
-        .F(1'b0),//Cin=1
+        .F(1'b1),//Cin=0
         .G(B),//Cin=1
         .H(1'bx),
         .opsel(opsel),
@@ -45,13 +46,13 @@ module ArithmeticBlock1Bit(
         );
         
     mux8to1 MUXC(
-        .A(1'b0),//Cin=0
-        .B(1'b0),//Cin=0
+        .A(Cin),//Cin=0
+        .B(Cin),//Cin=0
         .C(1'b0),//Cin=0
-        .D(1'b1),//Cin=1 Invert all B's
-        .E(1'b1),//Cin=1
-        .F(1'b1),//Cin=1
-        .G(1'b1),//Cin=1
+        .D(Cin),//Cin=1 Invert all B's
+        .E(Cin),//Cin=1
+        .F(Cin),//Cin=1
+        .G(Cin),//Cin=1
         .H(1'bx),
         .opsel(opsel),
         .out(muxoutc)
