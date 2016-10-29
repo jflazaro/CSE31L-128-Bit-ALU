@@ -58,7 +58,7 @@ module alu_128bit( op1, op2, opsel, mode, result, c_flag, z_flag, o_flag, s_flag
     genvar i;
     generate
         for (i=1; i<DWIDTH; i=i+1) begin: generate_128bitALU
-            alu_1bit(
+            alu_1bit ALUnext(
                 .op1(op1[i]),
                 .op2(op2[i]),
                 .cin(toALUnext[i]),
@@ -70,4 +70,15 @@ module alu_128bit( op1, op2, opsel, mode, result, c_flag, z_flag, o_flag, s_flag
             
         end
     endgenerate
+    
+    FlagGen FG(
+        .opsel(opsel),
+        .mode(mode),
+        .cin(toALUnext[DWIDTH]),
+        .c_flag(c_flag),
+        .z_flag(z_flag),
+        .s_flag(s_flag),
+        .o_flag(o_flag)
+    );
+    
 endmodule
