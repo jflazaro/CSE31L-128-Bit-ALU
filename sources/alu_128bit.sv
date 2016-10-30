@@ -71,10 +71,11 @@ module alu_128bit( op1, op2, opsel, mode, result, c_flag, z_flag, o_flag, s_flag
         end
     endgenerate
     
-    FlagGen FG(
+    FlagGen_128bit FG(
         .opsel(opsel),
         .mode(mode),
         .cin(toALUnext[DWIDTH]),
+        .result(result),
         .c_flag(c_flag),
         .z_flag(z_flag),
         .s_flag(s_flag),
