@@ -1,2 +1,2 @@
-# CSE31L_ALU
-Group Project on 128 bit ALU
+# CSE31L_128_BIT_ALU
+Group Project to design a 128 bit ALU using SystemVerilog
